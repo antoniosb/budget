@@ -11,6 +11,7 @@ defmodule Budget do
     |> filter
     |> normalize
     |> sort
+    |> print
   end
 
   defp parse(string) do
@@ -43,5 +44,14 @@ defmodule Budget do
 
   defp sort_asc_by_amount([_, _, prev_amount], [_, _, next_amount]) do
     next_amount > prev_amount
+  end
+
+  defp print(rows) do
+    IO.puts "\nTransactions:"
+    Enum.each(rows, &print_to_console(&1))
+  end
+
+  defp print_to_console([date, description, amount]) do
+    IO.puts "#{date} #{description} #{amount}"
   end
 end
