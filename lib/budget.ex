@@ -13,7 +13,9 @@ defmodule Budget do
   end
 
   defp parse(string) do
-    CSV.parse_string(string)
+    string
+    |> String.replace("\r","")
+    |> CSV.parse_string
   end
 
   defp filter(rows) do
@@ -26,5 +28,10 @@ defmodule Budget do
 
   defp parse_amount([date, description, amount]) do
     [date, description, parse_to_float(amount)]
+  end
+
+  defp parse_to_float(string) do
+    string
+    |> String.to_float
   end
 end
