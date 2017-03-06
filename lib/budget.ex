@@ -4,6 +4,6 @@ defmodule Budget do
   end
 
   def list_transactions do
-    "listing transactions"
+    File.read!("lib/transactions.csv")
   end
 end
